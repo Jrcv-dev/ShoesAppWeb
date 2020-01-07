@@ -37,12 +37,16 @@ namespace Data
         {
             try
             {
+                List<ImagesProduct> ListImages = new List<ImagesProduct>();
+                ListImages = (from o in ctx.ImagesProduct where o.IdImageProduct == id select o).ToList();
                 var registro = (from o in ctx.Products where o.Id == id select o).First();
                 if (registro != null)
                 {
+                    ctx.ImagesProduct.RemoveRange(ListImages);
                     ctx.Products.Remove(registro);
                     ctx.SaveChanges();
                 }
+
             }
             catch (System.Exception e)
             {
@@ -54,5 +58,40 @@ namespace Data
             var producto = (from o in ctx.Products where o.Id == id select o).First();
             return producto;
         }
+        public void EditProduct(Products model)
+        {
+            try
+            {
+                ctx.Entry(model).State = EntityState.Modified;
+                ctx.SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+
+            }
+        }
+        public void SaveImage(ImagesProduct Img)
+        {
+            try
+            {
+                ctx.ImagesProduct.Add(Img);
+                ctx.SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+
+            }
+        }
+        /* public void DeleteImage(Products producto)
+         {
+             try
+             {
+                 ctx.ImagesProduct.RemoveRange(producto.ImagesProduct);
+                 ctx.SaveChanges();
+             }catch(System.Exception e)
+             {
+
+             }
+         }*/
     }
 }

@@ -109,5 +109,62 @@ namespace BussinesL
             producto.DateUpdate = producto.DateUpdate;
             return producto;
         }
+        public void Edit(int id, ProductsEntity model)
+        {
+            Products Producto = new Products();
+            Producto.Id = id;
+            Producto.IdBrand = model.IdBrand;
+            Producto.IdCatalog = model.IdCatalog;
+            Producto.IdColor = model.IdColor;
+            Producto.IdProvider = model.IdProvider;
+            Producto.IdType = model.IdType;
+            Producto.Title = model.Tittle;
+            Producto.Nombre = model.Nombre;
+            Producto.Description = model.Description;
+            Producto.Observations = model.Observations;
+            Producto.PriceClient = model.PriceClient;
+            Producto.PriceDistributor = model.PriceDistributor;
+            Producto.PriceMember = model.PriceMember;
+            Producto.IsEnabled = model.IsEnabled;
+            Producto.Keywords = model.Keywords;
+            Producto.DateUpdate = DateTime.Now;
+            var data = new Data.CapaData();
+            data.EditProduct(Producto);
+        }
+        public void AddImage(byte[] img, int id)
+        {
+            ImagesProduct Img = new ImagesProduct()
+            {
+                IdImageProduct = id,
+                Decription = "Image of product",
+                Image = img,
+                DateUpdate = DateTime.Now + "",
+                IsEnabled = "true",
+            };
+            var data = new Data.CapaData();
+            data.SaveImage(Img);
+        }
+       /* public void DeleteImage(int id,ProductsEntity model)
+        {
+            Products Producto = new Products();
+            Producto.Id = id;
+            Producto.IdBrand = model.IdBrand;
+            Producto.IdCatalog = model.IdCatalog;
+            Producto.IdColor = model.IdColor;
+            Producto.IdProvider = model.IdProvider;
+            Producto.IdType = model.IdType;
+            Producto.Title = model.Tittle;
+            Producto.Nombre = model.Nombre;
+            Producto.Description = model.Description;
+            Producto.Observations = model.Observations;
+            Producto.PriceClient = model.PriceClient;
+            Producto.PriceDistributor = model.PriceDistributor;
+            Producto.PriceMember = model.PriceMember;
+            Producto.IsEnabled = model.IsEnabled;
+            Producto.Keywords = model.Keywords;
+            Producto.DateUpdate = DateTime.Now;
+            var data = new Data.CapaData();
+            data.DeleteImage(Producto);
+        }*/
     }
 }

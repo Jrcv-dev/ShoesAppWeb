@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,10 +12,11 @@ namespace ShoesAppWEB.Controllers
 {
     public class ProductsController : Controller
     {
+        BussinesL.Bussines bussines = new BussinesL.Bussines();
         // GET: Products
         public ActionResult Index()
         {
-            var bussines = new BussinesL.Bussines();
+            
             return View(bussines.ObtenerProductos());
         }
         public ActionResult Agregar()
@@ -24,9 +26,8 @@ namespace ShoesAppWEB.Controllers
         [HttpPost]
         public ActionResult Agregar(ProductsEntity model)
         {
-            var bussines = new BussinesL.Bussines();
             bussines.GuardarProducto(model);
-            return View("Index");
+            return View("Index", bussines.ObtenerProductos());
         }
         public ActionResult Borrar(int id)
         {
@@ -34,7 +35,6 @@ namespace ShoesAppWEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var bussines = new BussinesL.Bussines();
             var producto = bussines.ShowProduct(id);
             if(producto == null)
             {
@@ -45,9 +45,54 @@ namespace ShoesAppWEB.Controllers
         [HttpPost, ActionName("Borrar")]
         public ActionResult BorrarConfirmed(int id)
         {
-            var bussines = new BussinesL.Bussines();
             bussines.DeleteProduct(id);
-            return View("Index");
+            return View("Index", bussines.ObtenerProductos());
+        }
+        public ActionResult Details(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var producto = bussines.ShowProduct(id);
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(producto);
+        }
+        public ActionResult Edit(int id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var producto = bussines.ShowProduct(id);
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(producto);
+        }
+        [HttpPost]
+        public ActionResult Edit (int id, ProductsEntity model)
+        {
+            bussines.Edit(id, model);
+            return View(model);
+        }
+        public ActionResult FileUpload(ProductsEntity pro, HttpPostedFileBase file, int id)
+        {
+            string pic = System.IO.Path.GetFileName(file.FileName);
+            if (file != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                    bussines.AddImage(array, id); //id
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }

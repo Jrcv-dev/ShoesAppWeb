@@ -27,23 +27,25 @@
             <th>Price Client</th>
             <th>Price Member</th>
         </tr>
-
-        @foreach (var item in Model)
+        @if (!object.Equals(Model, null))
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                <td>@Html.DisplayFor(modelItem => item.Observations)</td>
-                <td>@Html.DisplayFor(modelItem => item.PriceDistributor)</td>
-                <td>@Html.DisplayFor(modelItem => item.PriceClient)</td>
-                <td>@Html.DisplayFor(modelItem => item.PriceMember)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Borrar", new { id = item.Id/* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Observations)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceDistributor)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceClient)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PriceMember)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id/* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id/* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Borrar", new { id = item.Id/* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
         }
 
     </table>
