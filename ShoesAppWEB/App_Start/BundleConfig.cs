@@ -23,7 +23,7 @@ namespace ShoesAppWEB
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-Slate.css",
                       "~/Content/site.css"));
         }
     }

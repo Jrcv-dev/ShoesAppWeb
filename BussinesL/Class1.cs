@@ -92,6 +92,7 @@ namespace BussinesL
             var data = new Data.CapaData();
             var product = data.ShowProduct(id);
             ProductsEntity producto = new ProductsEntity();
+            producto.Id = id;
             producto.IdBrand = product.IdBrand;
             producto.IdCatalog = product.IdCatalog;
             producto.IdColor = product.IdColor;
