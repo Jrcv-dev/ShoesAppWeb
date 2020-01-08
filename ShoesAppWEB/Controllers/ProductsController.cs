@@ -91,7 +91,7 @@ namespace ShoesAppWEB.Controllers
         public ActionResult Edit (int id, ProductsEntity model)
         {
             bussines.Edit(id, model);
-            return View(model);
+            return View("Index", bussines.ObtenerProductos());
         }
         public ActionResult FileUpload(ProductsEntity pro, HttpPostedFileBase file, int id)
         {

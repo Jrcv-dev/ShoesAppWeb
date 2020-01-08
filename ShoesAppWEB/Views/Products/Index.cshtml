@@ -33,6 +33,7 @@
             <th>Nombre</th>
             <th>Description</th>
             <th>Observations</th>
+            <th>Is Enabled</th>
             <th>Price Distributor</th>
             <th>Price Client</th>
             <th>Price Member</th>
@@ -47,6 +48,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>@Html.DisplayFor(modelItem => item.Observations)</td>
+                    <td>@Html.DisplayFor(modelItem=>item.IsEnabled)</td>
                     <td>@Html.DisplayFor(modelItem => item.PriceDistributor)</td>
                     <td>@Html.DisplayFor(modelItem => item.PriceClient)</td>
                     <td>@Html.DisplayFor(modelItem => item.PriceMember)</td>
