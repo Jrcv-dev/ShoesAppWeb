@@ -21,7 +21,7 @@ namespace ShoesAppWEB.Controllers
                 //Hacer metodo para buscar por nombre
                 return View(bussines.searchByName(search).ToList());
             }
-            else if(searchBy == "ID")
+            else if (searchBy == "ID")
             {
                 int id = int.Parse(search);
                 //hacer metodo para buscar por id
@@ -49,7 +49,7 @@ namespace ShoesAppWEB.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var producto = bussines.ShowProduct(id);
-            if(producto == null)
+            if (producto == null)
             {
                 return HttpNotFound();
             }
@@ -76,7 +76,7 @@ namespace ShoesAppWEB.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -88,8 +88,14 @@ namespace ShoesAppWEB.Controllers
             return View(producto);
         }
         [HttpPost]
-        public ActionResult Edit (int id, ProductsEntity model)
+        public ActionResult Edit(int id, ProductsEntity model)
         {
+            if (model.Description == null || model.Description == "" || model.Observations == null || model.Observations == "" || model.Keywords == null || model.Keywords == "")
+            {
+                model.Description = "";
+                model.Observations = "";
+                model.Keywords = "";
+            }
             bussines.Edit(id, model);
             return View("Index", bussines.ObtenerProductos());
         }
