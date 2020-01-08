@@ -92,6 +92,31 @@ namespace Data
             var producto = (from o in ctx.Products where o.Id == id select o).ToList();
             return producto;
         }
+        public List<CatTypeProduct> getTypeProduct()
+        {
+            var type = (from o in ctx.CatTypeProduct select o).ToList();
+            return type;
+        }
+        public List<CatBrands> getCatBrands()
+        {
+            var type = (from o in ctx.CatBrands select o).ToList();
+            return type;
+        }
+        public List<CatCatalogs> getCatalogs()
+        {
+            var type = (from o in ctx.CatCatalogs select o).ToList();
+            return type;
+        }
+        public List<CatColors> getCatColors()
+        {
+            var type = (from o in ctx.CatColors select o).ToList();
+            return type;
+        }
+        public List<CatProviders> getCatProviders()
+        {
+            var type = (from o in ctx.CatProviders select o).ToList();
+            return type;
+        }
         /* public void DeleteImage(Products producto)
          {
              try

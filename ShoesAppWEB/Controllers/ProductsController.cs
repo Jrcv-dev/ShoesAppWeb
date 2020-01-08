@@ -34,6 +34,11 @@ namespace ShoesAppWEB.Controllers
         }
         public ActionResult Agregar()
         {
+            ViewBag.IdBrand = new SelectList(bussines.GetCatBrands(), "IdBrand", "Code");
+            ViewBag.IdCatalog = new SelectList(bussines.GetCatCatalogs(), "IdCatalog", "Season");
+            ViewBag.IdColor = new SelectList(bussines.GetCatColors(), "IdColor", "Name");
+            ViewBag.IdProvider = new SelectList(bussines.GetCatProviders(), "IdProvider", "Name");
+            ViewBag.IdType = new SelectList(bussines.GetTypeProduct(), "IdType", "Code");
             return View();
         }
         [HttpPost]

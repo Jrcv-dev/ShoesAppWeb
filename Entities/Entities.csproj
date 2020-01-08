@@ -51,7 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatBrands.cs" />
+    <Compile Include="CatCatalogsProducts.cs" />
+    <Compile Include="CatProvidersProducts.cs" />
+    <Compile Include="CatTypeProducts.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="GetCatColors.cs" />
     <Compile Include="ProductsEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

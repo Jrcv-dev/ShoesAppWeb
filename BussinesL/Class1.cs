@@ -202,6 +202,93 @@ namespace BussinesL
             }
             return productoXid;
         }
+        public IEnumerable<CatTypeProducts> GetTypeProduct()
+        {
+            var type = data.getTypeProduct();
+            List<CatTypeProducts> tipodeProducto = new List<CatTypeProducts>();
+            foreach (var item in type)
+            {
+                tipodeProducto.Add(new CatTypeProducts {
+                    idType= item.IdType,
+                    code = item.Code,
+                    description = item.Description,
+                    isEnabled = item.IsEnabled,
+                    dateUpdate = item.DateUpdate
+                });
+            }
+            return tipodeProducto.AsEnumerable();
+        }
+        public IEnumerable<CatBrandsProducts> GetCatBrands()
+        {
+            var type = data.getCatBrands();
+            List<CatBrandsProducts> tipodeProducto = new List<CatBrandsProducts>();
+            foreach (var item in type)
+            {
+                tipodeProducto.Add(new CatBrandsProducts
+                {
+                    idBrands = item.IdBrand,
+                    code = item.Code,
+                    description = item.Description,
+                    isEnabled = item.IsEnabled,
+                    dateUpdate = item.DateUpdate
+                });
+            }
+            return tipodeProducto.AsEnumerable();
+        }
+        public IEnumerable<CatCatalogsProducts> GetCatCatalogs()
+        {
+            var type = data.getCatalogs();
+            List<CatCatalogsProducts> tipodeProducto = new List<CatCatalogsProducts>();
+            foreach (var item in type)
+            {
+                tipodeProducto.Add(new CatCatalogsProducts
+                {
+                    idCatalog = item.IdCatalog,
+                    idProvider = item.IdProvider,
+                    season = item.Season,
+                    isEnabled = item.IsEnabled,
+                    dateUpdate = item.DateUpdate,
+                    starActiveDate = item.StarActiveDate,
+                    endActiveDate = item.EndActiveDate
+                });
+            }
+            return tipodeProducto.AsEnumerable();
+        }
+        public IEnumerable<CatColorsProducts> GetCatColors()
+        {
+            var type = data.getCatColors();
+            List<CatColorsProducts> tipodeProducto = new List<CatColorsProducts>();
+            foreach (var item in type)
+            {
+                tipodeProducto.Add(new CatColorsProducts
+                {
+                    idColor = item.IdColor,
+                    name = item.Name,
+                    description = item.Description,
+                    isEnabled = item.IsEnable,
+                    hexadecimal = item.HexaDecimal
+                });
+            }
+            return tipodeProducto.AsEnumerable();
+        }
+        public IEnumerable<CatProvidersProducts> GetCatProviders()
+        {
+            var type = data.getCatProviders();
+            List<CatProvidersProducts> tipodeProducto = new List<CatProvidersProducts>();
+            foreach (var item in type)
+            {
+                tipodeProducto.Add(new CatProvidersProducts
+                {
+                    idProvider = item.IdProvider,
+                    name = item.Name,
+                    description = item.Description,
+                    isEnabled = item.IsEnabled,
+                    dateUpdate = item.DateUpdate,
+                    url = item.Url
+                });
+            }
+            return tipodeProducto.AsEnumerable();
+        }
        /* public void DeleteImage(int id,ProductsEntity model)
         {
             Products Producto = new Products();

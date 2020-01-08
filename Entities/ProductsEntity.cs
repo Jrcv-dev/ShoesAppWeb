@@ -14,6 +14,7 @@ namespace Entities
         public int? IdBrand { get; set; }
         public int? IdProvider { get; set; }
         public int IdCatalog { get; set; }
+        //cambiar string por list<tipodelatabla>
         public string CatTypeCode { get; set; }
         public string NameColor { get; set; }
         public string CatBrandCode { get; set; }
