@@ -78,7 +78,7 @@ namespace BussinesL
             Producto.PriceMember = model.PriceMember;
             Producto.IsEnabled = model.IsEnabled;
             Producto.Keywords = model.Keywords;
-            Producto.DateUpdate = model.DateUpdate;
+            Producto.DateUpdate = DateTime.Now;
             var data = new Data.CapaData();
             data.SaveProduct(Producto);
         }
