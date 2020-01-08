@@ -82,6 +82,16 @@ namespace Data
 
             }
         }
+        public List<Products> searchproduct(string search)
+        {
+            var productoObtenido = (from o in ctx.Products where o.Nombre == search || o.Nombre.StartsWith(search) || search== null select o).ToList();
+            return productoObtenido;
+        }
+        public List<Products> searchById(int id)
+        {
+            var producto = (from o in ctx.Products where o.Id == id select o).ToList();
+            return producto;
+        }
         /* public void DeleteImage(Products producto)
          {
              try

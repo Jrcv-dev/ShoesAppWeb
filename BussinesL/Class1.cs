@@ -10,6 +10,7 @@ namespace BussinesL
 {
     public class Bussines
     {
+        Data.CapaData data = new Data.CapaData();
         public List<ProductsEntity> ObtenerProductos()
         {
             var capaData = new Data.CapaData();
@@ -144,6 +145,62 @@ namespace BussinesL
             };
             var data = new Data.CapaData();
             data.SaveImage(Img);
+        }
+        public List<ProductsEntity> searchByName(string search)
+        {
+            var productos = data.searchproduct(search);
+            List<ProductsEntity> productosEncontrados = new List<ProductsEntity>();
+            foreach (var item in productos)
+            {
+                productosEncontrados.Add(new ProductsEntity {
+                    Id = item.Id,
+                    IdBrand = item.IdBrand,
+                    IdCatalog = item.IdCatalog,
+                    IdColor = item.IdColor,
+                    IdProvider = item.IdProvider,
+                    IdType = item.IdType,
+                    Tittle = item.Title,
+                    Nombre = item.Nombre,
+                    Description = item.Description,
+                    Observations = item.Observations,
+                    PriceDistributor = item.PriceDistributor,
+                    PriceClient = item.PriceClient,
+                    PriceMember = item.PriceMember,
+                    IsEnabled = item.IsEnabled,
+                    Keywords = item.Keywords,
+                    DateUpdate = item.DateUpdate,
+                    Image = item.ImagesProduct.Select(x => x.Image).ToList()
+            });
+            }
+            return productosEncontrados;
+        }
+        public List<ProductsEntity> searchById(int id)
+        {
+            var producto = data.searchById(id);
+            List<ProductsEntity> productoXid = new List<ProductsEntity>();
+            foreach (var item in producto)
+            {
+                productoXid.Add(new ProductsEntity {
+                    Id = item.Id,
+                    IdType = item.IdType,
+                    IdBrand = item.IdBrand,
+                    IdCatalog = item.IdCatalog,
+                    IdColor = item.IdColor,
+                    IdProvider = item.IdProvider,
+                    Nombre = item.Nombre,
+                    Tittle = item.Title,
+                    Description = item.Description,
+                    Observations = item.Observations,
+                    PriceDistributor = item.PriceDistributor,
+                    PriceClient = item.PriceClient,
+                    PriceMember = item.PriceMember,
+                    IsEnabled = item.IsEnabled,
+                    Keywords = item.Keywords,
+                    DateUpdate = item.DateUpdate,
+                    Image = item.ImagesProduct.Select(x => x.Image).ToList()
+                });
+            }
+            return productoXid;
         }
        /* public void DeleteImage(int id,ProductsEntity model)
         {

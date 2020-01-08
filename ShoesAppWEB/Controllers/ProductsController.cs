@@ -14,10 +14,23 @@ namespace ShoesAppWEB.Controllers
     {
         BussinesL.Bussines bussines = new BussinesL.Bussines();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            
-            return View(bussines.ObtenerProductos());
+            if (searchBy == "Name")
+            {
+                //Hacer metodo para buscar por nombre
+                return View(bussines.searchByName(search).ToList());
+            }
+            else if(searchBy == "ID")
+            {
+                int id = int.Parse(search);
+                //hacer metodo para buscar por id
+                return View(bussines.searchById(id));
+            }
+            else
+            {
+                return View(bussines.ObtenerProductos().ToList());
+            }
         }
         public ActionResult Agregar()
         {

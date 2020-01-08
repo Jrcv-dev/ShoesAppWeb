@@ -14,10 +14,20 @@
     <title>Index</title>
 </head>
 <body>
+    <br />
     <p>
         @Html.ActionLink("Create New", "Agregar")
     </p>
-    <table class="table">
+    <p>
+        @using (Html.BeginForm("Index","Products",FormMethod.Get))
+        {
+            <b>Search By: </b> @Html.RadioButton("searchBy", "Name",true) <text>Name</text>
+            @Html.RadioButton("searchBy", "ID") <text>ID</text>
+            <br />
+            @Html.TextBox("search",null, new {placeholder = "Search"}) <input type="submit" value="Search" class="btn btn-sm"/>
+        }
+    </p>
+    <table class="table" border="1">
         <tr>
             <th>Tittle</th>
             <th>Nombre</th>
@@ -26,6 +36,7 @@
             <th>Price Distributor</th>
             <th>Price Client</th>
             <th>Price Member</th>
+            <th>Action</th>
         </tr>
         @if (!object.Equals(Model, null))
         {
