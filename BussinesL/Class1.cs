@@ -37,26 +37,6 @@ namespace BussinesL
                     DateUpdate = item.DateUpdate,
                     Image = item.ImagesProduct.Select(x=>x.Image).ToList(),
                 };
-                /*if(item.CatTypeProduct != null)
-                {
-                    Producto.CatTypeCode = item.CatTypeProduct.Code;
-                }
-                if(item.CatColors != null)
-                {
-                    Producto.NameColor = item.CatColors.Name;
-                }
-                if(item.CatBrands != null)
-                {
-                    Producto.CatBrandCode = item.CatBrands.Code;
-                }
-                if(item.CatProviders != null)
-                {
-                    Producto.CatProvidersName = item.CatProviders.Name;
-                }
-                if(item.CatCatalogs != null)
-                {
-                    Producto.CatCatalogSeason = item.CatCatalogs.Season;
-                }*/
                 ListaProductos.Add(Producto);
             }
             return ListaProductos;
@@ -108,6 +88,7 @@ namespace BussinesL
             producto.PriceMember = product.PriceMember;
             producto.Image = product.ImagesProduct.Select(x=> x.Image).ToList();
             producto.IsEnabled = product.IsEnabled;
+            producto.ImageP = product.ImagesProduct.Select(x => x.IdImage).ToList();
             producto.DateUpdate = producto.DateUpdate;
             return producto;
         }
@@ -226,8 +207,9 @@ namespace BussinesL
             {
                 tipodeProducto.Add(new CatBrandsProducts
                 {
-                    idBrands = item.IdBrand,
+                    idBrand = item.IdBrand,
                     code = item.Code,
+                    name= item.Name,
                     description = item.Description,
                     isEnabled = item.IsEnabled,
                     dateUpdate = item.DateUpdate
@@ -289,27 +271,9 @@ namespace BussinesL
             }
             return tipodeProducto.AsEnumerable();
         }
-       /* public void DeleteImage(int id,ProductsEntity model)
+        public void DeleteImage(int idImage)
         {
-            Products Producto = new Products();
-            Producto.Id = id;
-            Producto.IdBrand = model.IdBrand;
-            Producto.IdCatalog = model.IdCatalog;
-            Producto.IdColor = model.IdColor;
-            Producto.IdProvider = model.IdProvider;
-            Producto.IdType = model.IdType;
-            Producto.Title = model.Tittle;
-            Producto.Nombre = model.Nombre;
-            Producto.Description = model.Description;
-            Producto.Observations = model.Observations;
-            Producto.PriceClient = model.PriceClient;
-            Producto.PriceDistributor = model.PriceDistributor;
-            Producto.PriceMember = model.PriceMember;
-            Producto.IsEnabled = model.IsEnabled;
-            Producto.Keywords = model.Keywords;
-            Producto.DateUpdate = DateTime.Now;
-            var data = new Data.CapaData();
-            data.DeleteImage(Producto);
-        }*/
+            data.DeleteImage(idImage);
+        }
     }
 }

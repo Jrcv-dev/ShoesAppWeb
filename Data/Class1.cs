@@ -84,7 +84,7 @@ namespace Data
         }
         public List<Products> searchproduct(string search)
         {
-            var productoObtenido = (from o in ctx.Products where o.Nombre == search || o.Nombre.StartsWith(search) || search== null select o).ToList();
+            var productoObtenido = (from o in ctx.Products where o.Nombre == search || o.Nombre.StartsWith(search) || search == null select o).ToList();
             return productoObtenido;
         }
         public List<Products> searchById(int id)
@@ -117,16 +117,21 @@ namespace Data
             var type = (from o in ctx.CatProviders select o).ToList();
             return type;
         }
-        /* public void DeleteImage(Products producto)
-         {
-             try
-             {
-                 ctx.ImagesProduct.RemoveRange(producto.ImagesProduct);
-                 ctx.SaveChanges();
-             }catch(System.Exception e)
-             {
+        public void DeleteImage(int idImage)
+        {
+            try
+            {
+                var image = (from o in ctx.ImagesProduct where o.IdImage == idImage select o).First();
+                if (image != null)
+                {
+                    ctx.ImagesProduct.Remove(image);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (System.Exception e)
+            {
 
-             }
-         }*/
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Entities
 {
     public class CatBrandsProducts
     {
-        public int idBrands { get; set; }
+        public int idBrand { get; set; }
         public string code { get; set; }
         public string name { get; set; }
         public string description { get; set; }

@@ -81,6 +81,11 @@ namespace ShoesAppWEB.Controllers
         }
         public ActionResult Edit(int id)
         {
+            ViewBag.IdBrand = new SelectList(bussines.GetCatBrands(), "IdBrand", "Code");
+            ViewBag.IdCatalog = new SelectList(bussines.GetCatCatalogs(), "IdCatalog", "Season");
+            ViewBag.IdColor = new SelectList(bussines.GetCatColors(), "IdColor", "Name");
+            ViewBag.IdProvider = new SelectList(bussines.GetCatProviders(), "IdProvider", "Name");
+            ViewBag.IdType = new SelectList(bussines.GetTypeProduct(), "IdType", "Code");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -117,6 +122,11 @@ namespace ShoesAppWEB.Controllers
                 }
             }
             return RedirectToAction("Index");
+        }
+        public ActionResult DeleteImage(int IdProd, int IdImag)
+        {
+            bussines.DeleteImage(IdImag);
+            return RedirectToAction("Edit", "Products", new { id = IdProd });
         }
     }
 }

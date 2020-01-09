@@ -31,5 +31,6 @@ namespace Entities
         public string Keywords { get; set; }
         public DateTime DateUpdate { get; set; }
         public List<byte[]> Image { get; set; }
+        public List<int> ImageP { get; set; }
     }
 }
